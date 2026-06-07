@@ -1,0 +1,12 @@
+{
+  "name": "monorepo",
+  "packageManager": "pnpm@10.9.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.6"
+  }
+}
