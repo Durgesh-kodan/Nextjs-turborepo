@@ -1,5 +1,5 @@
 {
-  "extends":"../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "plugins": [
       {
@@ -8,7 +8,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@repo/ui/*":["../../packages/ui/src/*"]
+      "@repo/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [
