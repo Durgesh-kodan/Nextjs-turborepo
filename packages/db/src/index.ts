@@ -32,6 +32,7 @@ export type {
   OrganizationMembership,
   Project,
   User,
+  Role,
 } from "./types";
 
 export { Prisma } from "../generated/prisma/client";

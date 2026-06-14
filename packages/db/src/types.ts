@@ -4,5 +4,6 @@ export type {
   OrganizationMembership,
   Project,
   User,
+  Role
 } from "../generated/prisma/client";
 
