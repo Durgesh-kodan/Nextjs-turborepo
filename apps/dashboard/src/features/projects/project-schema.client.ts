@@ -24,5 +24,5 @@ export const updateProjectSchema = z.object({
     .optional(),
 });
 
-export type createProjectsValues = z.infer<typeof createProjectSchema>;
+export type CreateProjectValues = z.infer<typeof createProjectSchema>;
 export type updateProjectsValues = z.infer<typeof updateProjectSchema>;

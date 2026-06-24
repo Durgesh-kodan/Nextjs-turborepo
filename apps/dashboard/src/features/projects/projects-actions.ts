@@ -15,7 +15,7 @@ import { requireUserCanDeleteProject } from "./projects-helpers.server";
 import { retrieveOrganizationFromDatabase } from "../organizations/organizations.model";
 import type { ActionResult } from "@repo/types";
 
-export async function projectsActions(
+export async function projectsAction(
   _previous: ActionResult,
   formData: FormData,
 ): Promise<ActionResult> {

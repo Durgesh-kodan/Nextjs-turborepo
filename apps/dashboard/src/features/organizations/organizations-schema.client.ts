@@ -8,4 +8,4 @@ export const createOrganizationSchema = z.object({
     .max(50, "name cannot extend 50 characters"),
 });
 
-export type createOrganizationValues = z.infer<typeof createOrganizationSchema>;
+export type CreateOrganizationValues = z.infer<typeof createOrganizationSchema>;

@@ -16,7 +16,7 @@ import { requireUserIsOrgAdmin } from "./organizations-helpers.server";
 import type { ActionResult } from "@repo/types";
 import { revalidatePath } from "next/cache";
 
-export async function organizationActions(
+export async function organizationsAction(
   _previous: ActionResult,
   formData: FormData,
 ): Promise<ActionResult> {

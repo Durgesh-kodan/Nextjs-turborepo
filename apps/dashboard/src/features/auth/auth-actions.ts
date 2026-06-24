@@ -16,62 +16,81 @@ export async function authAction(
 ): Promise<ActionResult> {
   const raw = Object.fromEntries(formData.entries());
   const parsed = authServerSchema.safeParse(raw);
+
   if (!parsed.success) {
     return { error: "Invalid Input" };
   }
+
   const { intent } = parsed.data;
 
   switch (intent) {
     case "sign-in": {
       const { email, password } = parsed.data;
       const normalizedEmail = email.toLowerCase();
+
       const user = await retrieveUserFromDatabaseByEmail(normalizedEmail);
-      if (!user) {
-        return { error: "invalid email or password" };
-      }
+
+      if (!user)
+        return {
+          error: "Invalid email or password",
+        };
+
       const valid = await verifyPassword(password, user.password);
-      if (!valid) {
-        return { error: "invalid email or password" };
-      }
+
+      if (!valid)
+        return {
+          error: "Invalid email or password",
+        };
+
       await signIn("credentials", {
         email: normalizedEmail,
         password,
         redirect: false,
       });
+
       redirect("/dashboard");
     }
+
     case "sign-up": {
       const { email, password, confirmPassword } = parsed.data;
+
       if (password !== confirmPassword)
         return {
-          error: "Password don't match",
+          error: "Passwords do not match",
         };
+
       const normalizedEmail = email.toLowerCase();
       const existingUser =
         await retrieveUserFromDatabaseByEmail(normalizedEmail);
+
       if (existingUser)
         return {
-          error: "User already exits",
+          error: "Invalid email or password",
         };
+
       const hashedPassword = await hashPassword(password);
 
       await saveUserToDatabase({
         email: normalizedEmail,
         password: hashedPassword,
       });
+
       await signIn("credentials", {
         email: normalizedEmail,
         password,
         redirect: false,
       });
+
       redirect("/dashboard");
     }
+
     case "sign-out": {
       await signOut({ redirect: false });
       redirect("/auth/sign-in");
     }
+
     default: {
-      return { error: "Invalid Intent" };
+      return { error: "Invalid intent" };
     }
   }
 }

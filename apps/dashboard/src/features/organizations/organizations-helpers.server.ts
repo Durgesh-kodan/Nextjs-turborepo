@@ -38,15 +38,15 @@ export async function requireOrganizationMembership(slug: string) {
   if (!organization) {
     return notFound();
   }
-  const [members, currentMembershipship, activeInvite] = await Promise.all([
+  const [members, currentMembership, activeInvite] = await Promise.all([
     retrieveMembershipsByOrganizationIdFromDatabase(organization.id),
     retrieveMembershipFromDatabase({ userId, organizationId: organization.id }),
     retrieveActiveInviteByOrganizationIdFromDatabase(organization.id),
   ]);
-  if (!currentMembershipship) {
+  if (!currentMembership) {
     return notFound();
   }
-  return { organization, members, currentMembershipship, userId, activeInvite };
+  return { organization, members, currentMembership, userId, activeInvite };
 }
 
 export function buildInviteUrl(token: string) {
