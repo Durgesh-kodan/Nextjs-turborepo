@@ -23,6 +23,7 @@ export function SignUpForm() {
     authAction,
     {},
   );
+
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -31,6 +32,7 @@ export function SignUpForm() {
       confirmPassword: "",
     },
   });
+
   return (
     <form
       action={formAction}
@@ -49,14 +51,16 @@ export function SignUpForm() {
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder="you@example.com"
                   disabled={isPending}
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="password"
@@ -66,14 +70,16 @@ export function SignUpForm() {
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="******"
+                  placeholder="••••••••"
                   disabled={isPending}
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="confirmPassword"
@@ -83,17 +89,20 @@ export function SignUpForm() {
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="******"
+                  placeholder="••••••••"
                   disabled={isPending}
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
+
         {state?.error && (
           <p className="text-sm text-destructive text-center">{state.error}</p>
         )}
+
         <Button
           type="submit"
           name="intent"
@@ -101,7 +110,7 @@ export function SignUpForm() {
           disabled={isPending}
           className="w-full"
         >
-          {isPending ? "Creating Account..." : "create account"}
+          {isPending ? "Creating account..." : "Create account"}
         </Button>
       </Form>
     </form>
